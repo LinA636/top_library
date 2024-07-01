@@ -1,0 +1,19 @@
+.my-library {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: start;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: start;
+}
+
+.button {
+  background-color: aliceblue;
+  min-height: 20px;
+  font-weight: bold;
+}
