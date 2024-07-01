@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-<!--
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
--->
   <title>My Library</title>
 
   <link rel="stylesheet" href="style.css">
@@ -13,7 +11,23 @@
 <body>
   <section class="my-library">
     <h1 class="section-title">My Library</h1>
-    <button>Add Book</button>
+    <button id="open-book-form-button">Create new book</button>
+
+    <form action="" id="add-book-form">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
+
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author" required>
+
+      <label for="pageNumber">Number of pages:</label>
+      <input type="number" id="pageNumber" name="pageNumber" required>
+      <button type="submit">Add Book</button>
+    </form>
+
+    <section id="book-cards-container">
+
+    </section>
   </section>
 
   <script src="book.js"></script>
