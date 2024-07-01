@@ -1,20 +1,24 @@
 const myLibrary = [];
 
-function Book(title, author, pageNumber) {
+function Book(title, author, pageNumber, read = false) {
   this.title = title;
   this.author = author;
   this.pageNumber = pageNumber;
-  this.read = false;
+  this.read = read;
 
   this.setRead = function() {
     this.read = true;
   }
 
+  this.setUnRead = function() {
+    this.read = false;
+  }
+
   this.info = function() {
     if (this.read) {
-      return this.title + ' by ' + this.author + ', ' + pageNumber + ' pages' + ', read';
+      return this.title + ' by ' + this.author + ', ' + this.pageNumber + ' pages' + ', read';
     } else {
-      return this.title + ' by ' + this.author + ', ' + pageNumber + ' pages' + ', not read yet.';
+      return this.title + ' by ' + this.author + ', ' + this.pageNumber + ' pages' + ', not read yet.';
     }
   }
 }
@@ -40,11 +44,19 @@ function displayBook(book) {
   deleteButton.textContent = "delete book";
   deleteButton.addEventListener('click', () => {deleteBook(book, bookCard);});
 
+  const readButton = document.createElement('button');
+  readButton.id = 'read-status-button';
+  setBookReadingStatusOnButton(readButton, book);
+  readButton.addEventListener('click', () => {
+    setBookReadingStatus(book);
+    setBookReadingStatusOnButton(readButton, book);
+  });
 
   /** append the content to the book-card */
   bookCard.appendChild(bookTitle);
   bookCard.appendChild(bookDescription);
   bookCard.appendChild(deleteButton);
+  bookCard.appendChild(readButton);
 
   /** append book-card to view */
   const libraryContainer = document.getElementById('book-cards-container');
@@ -63,6 +75,22 @@ function deleteBook(book, bookCard){
 
   /** remove book-card from the DOM */
   bookCard.remove();
+}
+
+function setBookReadingStatus(book) {
+  if (book.read) {
+    book.setUnRead();
+  } else {
+    book.setRead();
+  }
+}
+
+function setBookReadingStatusOnButton(readButton, book){
+  if (book.read){
+    readButton.textContent = 'mark as unread';
+  } else {
+    readButton.textContent = 'want to read';
+  }
 }
 
 function showForm(){
